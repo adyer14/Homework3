@@ -10,6 +10,18 @@
 
 <script type="text/javascript">
 	
+var margin = {top: 15, right: 10, bottom: 40, left: 40},
+    width = 400,
+    height = 450;
 
+d3.csv("ks-projects-201801.csv", function(error, data) {
+	if(error) throw error;
+
+	data.forEach(function(d) {
+		d.pledged = +d.pledged;
+		d.backers = +d.backers;
+		d.usd_pledged_real = +d.usd_pledged_real;
+		d.usd_goal_real = +d.usd_goal_real;
+	});
 
 </script>
