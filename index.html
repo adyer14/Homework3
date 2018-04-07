@@ -36,8 +36,6 @@ d3.csv("ks-projects-201801.csv", function(error, data) {
 	x.domain(d3.extent(data, function(d) { return d.backers; }));
   	y.domain([0, d3.max(data, function(d) { return d.usd_goal_real; })]);
 
-  	console.log(data);
-
   	svg.selectAll("dot")
       .data(data)
     .enter().append("circle")
