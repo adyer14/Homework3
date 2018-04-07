@@ -41,7 +41,8 @@ d3.csv("ks-projects-201801.csv", function(error, data) {
     .enter().append("circle")
       .attr("r", 5)
       .attr("cx", function(d) { return x(d.backers); })
-      .attr("cy", function(d) { return y(d.usd_pledged_real); });
+      .attr("cy", function(d) { return y(d.usd_pledged_real); })
+      .style(opacity, .5);
 
     svg.append("g")
       .attr("transform", "translate(0," + height + ")")
