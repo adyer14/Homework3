@@ -35,6 +35,8 @@ d3.csv("ks-projects-201801.csv", function(error, data) {
 
 	var USData = data.filter(function(row) {return row['country'] == "US"});
 
+	console.log(USData);
+
 	x.domain(d3.extent(USData, function(d) { return d.backers; }));
   	y.domain([0, d3.max(USData, function(d) { return d.usd_pledged_real; })]);
 
