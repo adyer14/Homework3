@@ -11,8 +11,8 @@
 <script type="text/javascript">
 	
 var margin = {top: 15, right: 10, bottom: 40, left: 40},
-    width = 400,
-    height = 450;
+    width = 700,
+    height = 500;
 
 var x = d3.scaleLinear().range([0, width]);
 var y = d3.scaleLinear().range([height, 0]);
@@ -36,6 +36,7 @@ d3.csv("ks-projects-201801.csv", function(error, data) {
 	x.domain(d3.extent(data, function(d) { return d.usd_pledged_real; }));
   	y.domain([0, d3.max(data, function(d) { return d.usd_goal_real; })]);
 
+  	console.log(data);
 
   	svg.selectAll("dot")
       .data(data)
