@@ -33,7 +33,7 @@ d3.csv("ks-projects-201801.csv", function(error, data) {
 		d.usd_goal_real = +d.usd_goal_real;
 	});
 
-	x.domain(d3.extent(data, function(d) { return d.usd_pledged_real; }));
+	x.domain(d3.extent(data, function(d) { return d.backers; }));
   	y.domain([0, d3.max(data, function(d) { return d.usd_goal_real; })]);
 
   	console.log(data);
@@ -42,7 +42,7 @@ d3.csv("ks-projects-201801.csv", function(error, data) {
       .data(data)
     .enter().append("circle")
       .attr("r", 5)
-      .attr("cx", function(d) { return x(d.usd_pledged_real); })
+      .attr("cx", function(d) { return x(d.backers); })
       .attr("cy", function(d) { return y(d.usd_goal_real); });
 
     svg.append("g")
