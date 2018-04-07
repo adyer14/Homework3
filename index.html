@@ -33,17 +33,17 @@ d3.csv("ks-projects-201801.csv", function(error, data) {
 		d.usd_goal_real = +d.usd_goal_real;
 	});
 
-	x.domain(d3.extent(data, function(d) { return d.backers; }));
-  	y.domain([0, d3.max(data, function(d) { return d.usd_pledged_real; })]);
+	var USData = data.filter(function(row) {return row['country'] == "US"});
+
+	x.domain(d3.extent(USData, function(d) { return d.backers; }));
+  	y.domain([0, d3.max(USData, function(d) { return d.usd_pledged_real; })]);
 
   	svg.selectAll("dot")
-      .data(data)
+      .data(USData)
     .enter().append("circle")
-    .filter(function(d) { return d.country == "US" })
       .attr("r", 5)
       .attr("cx", function(d) { return x(d.backers); })
-      .attr("cy", function(d) { return y(d.usd_pledged_real); })
-      .style("opacity", .5);
+      .attr("cy", function(d) { return y(d.usd_pledged_real); });
 
     svg.append("g")
       .attr("transform", "translate(0," + height + ")")
