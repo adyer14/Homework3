@@ -41,7 +41,22 @@ d3.csv("ks-projects-201801.csv", function(error, data) {
     .enter().append("circle")
       .attr("r", 5)
       .attr("cx", function(d) { return x(d.backers); })
-      .attr("cy", function(d) { return y(d.usd_pledged_real); });
+      .attr("cy", function(d) { return y(d.usd_pledged_real); })
+      .attr("fill", function(d) {
+    		if (d.state == "successful") {
+    			return "Green";
+    		} else if (d.state == "canceled") {
+    			return "Orange";
+    		} else if (d.state == "failed") {
+    			return "Red";
+    		} else if (d.state == "live") {
+    			return "Blue";
+    		} else if (d.state == "suspended") {
+    			return "Yellow";
+    		} else {
+    			return "Grey";
+    		}})
+       .style("opacity", .5); 
 
     svg.append("g")
       .attr("transform", "translate(0," + height + ")")
