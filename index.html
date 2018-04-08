@@ -23,7 +23,7 @@ var svg = d3.select(".kickstarterBubble")
 			.append("g")
     			.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-d3.csv("ks-projects-201801.csv", function(error, data) {
+d3.csv("kickstarter.csv", function(error, data) {
 	if(error) throw error;
 
 	data.forEach(function(d) {
@@ -33,15 +33,11 @@ d3.csv("ks-projects-201801.csv", function(error, data) {
 		d.usd_goal_real = +d.usd_goal_real;
 	});
 
-	var USData = data.filter(function(row) {return row['country'] == "US"});
-
-	console.log(USData);
-
-	x.domain(d3.extent(USData, function(d) { return d.backers; }));
-  	y.domain([0, d3.max(USData, function(d) { return d.usd_pledged_real; })]);
+	x.domain(d3.extent(data, function(d) { return d.backers; }));
+  	y.domain([0, d3.max(data, function(d) { return d.usd_pledged_real; })]);
 
   	svg.selectAll("dot")
-      .data(USData)
+      .data(data)
     .enter().append("circle")
       .attr("r", 5)
       .attr("cx", function(d) { return x(d.backers); })
