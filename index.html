@@ -40,7 +40,13 @@ d3.csv("kickstarter.csv", function(error, data) {
       .data(data)
     .enter().append("circle")
       .attr("r", function(d) {
-        return (d.usd_goal_real/50000) + 7;
+        if (d.usd_goal_real > 91000) {
+          return d.usd_goal_real/100000 + 15;
+        } else if (usd_goal_real > 20100 && usd_goal_real < 90999) {
+          return d.usd_goal_real/10000 + 10;
+        } else {
+          return d.usd_goal_real/1000 + 5;
+        }
       })
       .attr("cx", function(d) { return x(d.backers); })
       .attr("cy", function(d) { return y(d.usd_pledged_real); })
