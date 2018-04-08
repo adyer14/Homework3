@@ -42,7 +42,7 @@ d3.csv("kickstarter.csv", function(error, data) {
       .attr("r", function(d) {
         if (d.usd_goal_real > 91000) {
           return d.usd_goal_real/100000 + 15;
-        } else if (usd_goal_real > 20100 && usd_goal_real < 90999) {
+        } else if (d.usd_goal_real > 20100 && d.usd_goal_real < 90999) {
           return d.usd_goal_real/10000 + 10;
         } else {
           return d.usd_goal_real/1000 + 5;
